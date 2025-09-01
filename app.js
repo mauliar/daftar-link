@@ -6,7 +6,7 @@ let appData = {
       name: "Produktivitas", 
       icon: "briefcase",
       links: [
-        {id: "gmail", name: "Gmail", url: "https://gmail.com", icon: "✉️"},
+        {id: "montecarlo", name: "Monte Carlo", url: "https://github.com/mauliar/forwork.git", icon: "✉️"},
         {id: "gdrive", name: "Google Drive", url: "https://drive.google.com", icon: "💾"},
         {id: "notion", name: "Notion", url: "https://notion.so", icon: "📝"},
         {id: "trello", name: "Trello", url: "https://trello.com", icon: "📋"},
