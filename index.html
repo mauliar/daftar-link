@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Link Pribadi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1>Dashboard Link</h1>                        
+                    </div>
+                    <div class="header-actions">
+                        <div class="search-container">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Cari link...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <button id="themeToggle" class="theme-toggle btn btn--secondary">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="addLinkBtn" class="btn btn--primary">
+                            <i class="fas fa-plus"></i>
+                            Tambah Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="totalLinks">0</div>
+                                <div class="stat-label">Total Link</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="totalCategories">0</div>
+                                <div class="stat-label">Kategori</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" id="recentCount">0</div>
+                                <div class="stat-label">Terakhir Diakses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Links Section -->
+                <div id="recentLinksSection" class="recent-section" style="display: none;">
+                    <h3>Link Terakhir Diakses</h3>
+                    <div id="recentLinksContainer" class="recent-links-grid"></div>
+                </div>
+
+                <!-- Categories Grid -->
+                <div class="categories-section">
+                    <div class="section-header">
+                        <h2>Kategori Link</h2>
+                        <div class="section-actions">
+                            <button id="exportBtn" class="btn btn--outline btn--sm">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button id="importBtn" class="btn btn--outline btn--sm">
+                                <i class="fas fa-upload"></i>
+                                Import
+                            </button>
+                        </div>
+                    </div>
+                    <div id="categoriesGrid" class="categories-grid">
+                        <!-- Categories will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Add/Edit Link Modal -->
+        <div id="linkModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Tambah Link Baru</h3>
+                    <button id="closeModal" class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="linkForm" class="modal-body">
+                    <div class="form-group">
+                        <label for="linkName" class="form-label">Nama Link</label>
+                        <input type="text" id="linkName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkUrl" class="form-label">URL</label>
+                        <input type="url" id="linkUrl" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkCategory" class="form-label">Kategori</label>
+                        <select id="linkCategory" class="form-control" required>
+                            <option value="">Pilih kategori...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkIcon" class="form-label">Icon (opsional)</label>
+                        <input type="text" id="linkIcon" class="form-control" placeholder="🔗">
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" id="cancelBtn" class="btn btn--secondary">Batal</button>
+                    <button type="submit" form="linkForm" id="saveBtn" class="btn btn--primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmModal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content modal-content--sm">
+                <div class="modal-header">
+                    <h3>Konfirmasi</h3>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmMessage">Apakah Anda yakin?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirmCancel" class="btn btn--secondary">Batal</button>
+                    <button id="confirmOk" class="btn btn--primary">Ya</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Import File Input -->
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+
+        <!-- Toast Notifications -->
+        <div id="toastContainer" class="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
